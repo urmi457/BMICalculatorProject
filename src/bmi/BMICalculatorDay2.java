@@ -2,9 +2,12 @@ package bmi;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class BMICalculatorDay1 extends JFrame {
-    public BMICalculatorDay1() {
+public class BMICalculatorDay2 extends JFrame implements ActionListener {
+    private JTextField feetField, inchesField, weightField;
+
+    public BMICalculatorDay2() {
         setTitle("BMI Calculator");
         setSize(350, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,11 +31,11 @@ public class BMICalculatorDay1 extends JFrame {
         panel.add(feetLabel, gbc);
 
         gbc.gridx = 1;
-        JTextField feetField = new JTextField(10);
+        feetField = new JTextField(10);
         feetField.setFont(inputFont);
         panel.add(feetField, gbc);
 
-        
+       
         gbc.gridx = 0;
         gbc.gridy = 1;
         JLabel inchLabel = new JLabel("Height (inches):");
@@ -40,7 +43,7 @@ public class BMICalculatorDay1 extends JFrame {
         panel.add(inchLabel, gbc);
 
         gbc.gridx = 1;
-        JTextField inchesField = new JTextField(10);
+        inchesField = new JTextField(10);
         inchesField.setFont(inputFont);
         panel.add(inchesField, gbc);
 
@@ -52,7 +55,7 @@ public class BMICalculatorDay1 extends JFrame {
         panel.add(weightLabel, gbc);
 
         gbc.gridx = 1;
-        JTextField weightField = new JTextField(10);
+        weightField = new JTextField(10);
         weightField.setFont(inputFont);
         panel.add(weightField, gbc);
 
@@ -66,9 +69,10 @@ public class BMICalculatorDay1 extends JFrame {
         calculateButton.setBackground(new Color(76, 175, 80));
         calculateButton.setForeground(Color.WHITE);
         calculateButton.setFocusPainted(false);
+        calculateButton.addActionListener(this); 
         panel.add(calculateButton, gbc);
 
-        
+       
         gbc.gridy = 4;
         JLabel resultLabel = new JLabel(" ");
         resultLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -78,8 +82,19 @@ public class BMICalculatorDay1 extends JFrame {
         setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Read user inputs and print to console
+        String feet = feetField.getText().trim();
+        String inches = inchesField.getText().trim();
+        String weight = weightField.getText().trim();
+
+        System.out.println("Feet: " + feet);
+        System.out.println("Inches: " + inches);
+        System.out.println("Weight (kg): " + weight);
+    }
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(BMICalculatorDay1::new);
+        SwingUtilities.invokeLater(BMICalculatorDay2::new);
     }
 }
-
